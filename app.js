@@ -13,7 +13,7 @@ rl.setPrompt('> ');
 rl.prompt();
 rl.on('line', reply => {
 	matcher(reply, data => {
-		switch(data.intent) {
+		switch (data.intent) {
 			case 'Hello':
 				console.log(`${data.entities.greeting} to you too!`);
 				rl.prompt();
