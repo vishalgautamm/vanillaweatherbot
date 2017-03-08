@@ -11,6 +11,7 @@
   "dependencies": {
     "colors": "1.1.2",
     "moment": "2.13.0",
+    "request": "^2.73.0",
     "restify": "^4.1.1",
     "xregexp": "3.1.1",
     "yql": "1.0.2"
