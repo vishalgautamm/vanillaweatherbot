@@ -49,28 +49,30 @@ let currentWeather = response => {
 		// Access conditions
 		let {text, temp, code} = resp.item.condition; // text = resp.item.condition.text; temp = resp.item.condition.temp;
 
-		return `Right now, ${getPrefix(code)} ${text.toLowerCase().red.bold} in ${location.bold}. It is ${getFeel(Number(temp))} at ${temp.red.bold} degrees Celsius.`
+		return `Right now, ${getPrefix(code)} ${text.toLowerCase()} in ${location}. It is ${getFeel(Number(temp))} at ${temp} degrees Celsius.`
 	} else {
 		return "I don't seem to know anything about this place...Sorry :(";
 	}
 }
 
 let forecastWeather = (response, data) => {
-	if(response.query.results) {
-		// convert 'tomorrow', 'day after tomorrow', 'today' into date formats like 23 June 2016
+	if (response.query.results) {
+		// convert 'tomorrow', today or 'day after tomorrow' to a formatted date string(23 June 2016
 		let parseDate = getDate(data.time);
 		let resp = response.query.results.channel;
 		let getForecast = resp.item.forecast.filter(item => {
 			return item.date === parseDate;
 		})[0];
 		let location = `${resp.location.city}, ${resp.location.country}`;
+
 		let regEx = new RegExp(data.weather, "i");
 		let testConditions = regEx.test(getForecast.text); // true or false
-		return `${testConditions ? 'Yes' : 'No'}, ${getPrefix(getForecast.code, 'future')} ${getForecast.text.bold} ${data.time} in ${location}`;
+
+		return `${testConditions ? 'Yes' : 'No'}, ${getPrefix(getForecast.code, 'future')} ${getForecast.text} ${data.time} in ${location}`
 	} else {
-		return "I don't seem to know anything about this place...Sorry :(";
+		return "I dont seem to know anything about this place sorry"
 	}
-}
+};
 
 module.exports = {
 	currentWeather,
