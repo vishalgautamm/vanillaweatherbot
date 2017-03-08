@@ -2,12 +2,15 @@
   "name": "vanilla",
   "version": "1.0.0",
   "description": "A Rule based weather bot",
-  "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "author": "Vishal Gautam",
   "license": "ISC",
+	"engines": {
+		"node": "7.1.0"
+	},
+
   "dependencies": {
     "colors": "1.1.2",
     "moment": "2.13.0",
